@@ -355,7 +355,7 @@ const ExclusionForm = ({ addTask = () => {} }) => {
     }
 
     // Validate required fields
-    if (!formData.hospitalName || !formData.companyName || !formData.enrolleeName || 
+    if (!formData.hospitalName || !formData.companyName || 
         !formData.approvalRequestAmount || !formData.reasonForExclusion || !formData.invoiceFile) {
       setToastMessage("Please fill all required fields");
       setShowSuccessToast(true);
