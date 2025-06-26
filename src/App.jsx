@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Departments from "./routes/Departments";
 import LoginForm from "./components/LoginForm";
-import { UserProvider } from "./contexts/userContexts";
-import { TasksProvider } from "./contexts/taskContexts";
+import { UserProvider } from "./contexts/UserContext";
+import { TasksProvider } from "./contexts/TasksContext";
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useContext, useCallback } from "react";
 import SuccessToast from "../components/SuccessToast";
-import { UserContext } from "../contexts/userContexts";
+import { UserContext } from "../contexts/UserContext";
 import { NotificationService } from "../services/notificationTemplates/notificationService";
 
 const ExclusionForm = ({ addTask = () => {} }) => {

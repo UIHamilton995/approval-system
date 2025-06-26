@@ -440,7 +440,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../contexts/userContexts"; 
+import { useUser } from "../contexts/UserContext"; 
 import bgImage from '../assets/huggingPatient.jpg';
 import appIcon from '../assets/boss.gif';
 

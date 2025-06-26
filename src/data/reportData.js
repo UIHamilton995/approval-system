@@ -18,7 +18,7 @@ const reportData = [
       netAmount: 1187500,
       datePrepared: "2025-01-15T09:30:00",
       fileUrl: "/reports/rep-2023-001.pdf",
-      status: "Processing"
+      status: "Queued"
     },
     {
       id: "REP-2023-002",
@@ -60,7 +60,7 @@ const reportData = [
       netAmount: 3990000,
       datePrepared: "2025-02-05T11:45:00",
       fileUrl: "/reports/rep-2023-003.pdf",
-      status: "Processing"
+      status: "Queued"
     },
     {
       id: "REP-2023-004",
@@ -81,7 +81,7 @@ const reportData = [
       netAmount: 931000,
       datePrepared: "2024-02-10T16:20:00",
       fileUrl: "/reports/rep-2023-004.pdf",
-      status: "Processing"
+      status: "Queued"
     },
     {
       id: "REP-2023-005",
@@ -165,7 +165,7 @@ const reportData = [
       netAmount: 617500,
       datePrepared: "2025-03-15T11:15:00",
       fileUrl: "/reports/rep-2023-008.pdf",
-      status: "Processing"
+      status: "Queued"
     },
     {
       id: "REP-2023-009",
@@ -186,7 +186,7 @@ const reportData = [
       netAmount: 845500,
       datePrepared: "2024-09-05T14:45:00",
       fileUrl: "/reports/rep-2023-009.pdf",
-      status: "Processing"
+      status: "Queued"
     },
     {
       id: "REP-2023-010",
@@ -207,7 +207,7 @@ const reportData = [
       netAmount: 684000,
       datePrepared: "2024-04-10T10:00:00",
       fileUrl: "/reports/rep-2023-010.pdf",
-      status: "Processing"
+      status: "Queued"
     },
     {
       id: "REP-2023-011",
@@ -228,7 +228,7 @@ const reportData = [
       netAmount: 3610000,
       datePrepared: "2025-04-01T16:30:00",
       fileUrl: "/reports/rep-2023-011.pdf",
-      status: "Processing"
+      status: "Queued"
     },
     {
       id: "REP-2023-012",
@@ -291,7 +291,7 @@ const reportData = [
       netAmount: 1995000,
       datePrepared: "2024-05-15T15:45:00",
       fileUrl: "/reports/rep-2023-014.pdf",
-      status: "Processing"
+      status: "Queued"
     },
     {
       id: "REP-2023-015",
@@ -312,7 +312,7 @@ const reportData = [
       netAmount: 1757500,
       datePrepared: "2025-02-20T11:30:00",
       fileUrl: "/reports/rep-2023-015.pdf",
-      status: "Processing"
+      status: "Queued"
     }
   ];
   

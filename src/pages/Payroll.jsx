@@ -1,13 +1,13 @@
 import { useState } from "react";
 import TaskModal from "../components/TaskModal";
 import SuccessToast from "../components/SuccessToast";
-import { useUser } from "../contexts/userContexts";
+import { useUser } from "../contexts/UserContext";
 import { formatDateTime } from "../utils/tasksHelper";
 import { FaMoneyBillWave, FaCheckCircle, FaTimes } from "react-icons/fa";
 import { BsBank2 } from "react-icons/bs";
 import FilterDate from "../components/FilterDate";
 import NextPreviousPage from "../components/NextPreviousPage";
-import { useTasks } from "../contexts/taskContexts";
+import { useTasks } from "../contexts/TasksContext";
 import units from '../data/units'
 
 const getStatusStyle = (status) => {

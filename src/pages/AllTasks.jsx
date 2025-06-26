@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { MdAddCircle, MdRefresh } from "react-icons/md";
 import TaskModal from "../components/TaskModal";
-import { useUser } from "../contexts/userContexts";
+import { useUser } from "../contexts/UserContext";
 import { formatDateTime } from "../utils/tasksHelper";
 import FilterDate from "../components/FilterDate";
 import NextPreviousPage from "../components/NextPreviousPage";
-import { useTasks } from "../contexts/taskContexts";
+import { useTasks } from "../contexts/TasksContext";
 import units from '../data/units'
 
 const getStatusStyle = (status) => {
