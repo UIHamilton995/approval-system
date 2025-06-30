@@ -9,6 +9,7 @@ import FilterDate from "../components/FilterDate";
 import NextPreviousPage from "../components/NextPreviousPage";
 import { useTasks } from "../contexts/TasksContext";
 import units from '../data/units'
+import { useSearch } from "../contexts/SearchContext";
 
 const getStatusStyle = (status) => {
   const baseStyle = "px-4 py-3 border-b font-semibold ";
@@ -30,6 +31,7 @@ const extractNumericalDigits = (value) => {
 
 const Payroll = () => {
   const { user } = useUser();
+  const { searchTerm } = useSearch()
   const { tasks, loading, error, fetchTasks } = useTasks();
   const [selectedTask, setSelectedTask] = useState(null);
   const [selectedTasks, setSelectedTasks] = useState([]);
@@ -56,7 +58,18 @@ const Payroll = () => {
       ? new Date(task.created_at) >= new Date(dateFilter.startDate) && 
         new Date(task.created_at) <= new Date(dateFilter.endDate)
       : true;
-    return matchesStatus && matchesUnit && matchesDate;
+
+    const matchesSearch = !searchTerm || 
+    task.UniqueId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    task.provider.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    task.provider_account_number.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    task.task.approval_amount?.toLocaleString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+    task.date.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    task.time.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    task.unit.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    task.status.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return matchesStatus && matchesUnit && matchesDate && matchesSearch;
   });
 
   // Pagination calculations

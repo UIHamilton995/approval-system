@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useUser } from "../contexts/UserContext";
+import { useSearch } from '../contexts/SearchContext'
 import { formatDateTime } from "../utils/tasksHelper";
 import FilterDate from "../components/FilterDate";
 import NextPreviousPage from "../components/NextPreviousPage";
@@ -11,7 +12,8 @@ import jsPDF from "jspdf";
 import units from '../data/units'
 
 const Reports = () => {
-  const { user } = useUser();
+  const { user } = useUser(); 
+  const { searchTerm } = useSearch();
   const [selectedUnit, setSelectedUnit] = useState("All Units");
   const [dateFilter, setDateFilter] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +29,17 @@ const Reports = () => {
       ? new Date(report.datePrepared) >= new Date(dateFilter.startDate) && 
         new Date(report.datePrepared) <= new Date(dateFilter.endDate)
       : true;
-    return matchesUnit && matchesDate;
+
+    // Search filter that checks multiple fields
+    const matchesSearch = !searchTerm || 
+    report.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    report.unit.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    report.reportType.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    report.beneficiary.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    report.amount.toLocaleString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+    report.status.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return matchesUnit && matchesDate && matchesSearch;
   });
 
   // Pagination calculations

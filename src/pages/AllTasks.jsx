@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { MdAddCircle, MdRefresh } from "react-icons/md";
 import TaskModal from "../components/TaskModal";
 import { useUser } from "../contexts/UserContext";
+import { useSearch } from "../contexts/SearchContext";
 import { formatDateTime } from "../utils/tasksHelper";
 import FilterDate from "../components/FilterDate";
 import NextPreviousPage from "../components/NextPreviousPage";
@@ -21,6 +22,7 @@ const getStatusStyle = (status) => {
 
 const AllTasks = () => {
   const { user, isAdmin } = useUser();
+  const { searchTerm } = useSearch();
   const { tasks, loading, error, fetchTasks } = useTasks();
   const [selectedTask, setSelectedTask] = useState(null);
   const [filter, setFilter] = useState(isAdmin() ? "All" : user?.group_name || "All");
@@ -55,9 +57,22 @@ const AllTasks = () => {
     }
   };
 
-  const filteredTasks = filter === "All" 
-    ? tasks 
-    : tasks.filter(task => task.unit === filter);
+  // Enhanced filtering with search term
+  const filteredTasks = tasks.filter(task => {
+    // Unit filter
+    const matchesUnit = filter === "All" || task.unit === filter;
+    
+    // Search term filter - checks multiple fields
+    const matchesSearch = !searchTerm || 
+      task.UniqueId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      task.provider.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      task.provider_account_number.includes(searchTerm) ||
+      task.approval_amount?.toString().includes(searchTerm) ||
+      task.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      task.unit.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    return matchesUnit && matchesSearch;
+  });
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
