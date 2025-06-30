@@ -4,8 +4,8 @@ import alarmIcon from "../../assets/alarmicon.svg";
 import dropdownArrow from "../../assets/vangle.svg";
 import userImage from "../../assets/userimage.svg";
 
-function Navbar({ onSearch }) {
-  const [searchTerm, setSearchTerm] = useState("");
+const Navbar = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   // Handle Search Input

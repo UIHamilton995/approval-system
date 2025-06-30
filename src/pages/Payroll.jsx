@@ -242,7 +242,9 @@ const Payroll = () => {
           </thead>
           <tbody>
             {currentItems.length > 0 ? (
-              currentItems.map((task) => {
+              [...currentItems]
+              .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+              .map((task) => {
                 const { date, time } = formatDateTime(task.created_at);
                 return (
                   <tr

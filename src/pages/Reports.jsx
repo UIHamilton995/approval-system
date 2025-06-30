@@ -191,7 +191,9 @@ const Reports = () => {
           </thead>
           <tbody>
             {currentItems.length > 0 ? (
-              currentItems.map((report) => {
+              [...currentItems]
+              .sort((a, b) => new Date(b.datePrepared) - new Date(a.datePrepared))
+              .map((report) => {
                 const { date } = formatDateTime(report.datePrepared);
                 return (
                   <tr

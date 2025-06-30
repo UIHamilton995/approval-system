@@ -182,8 +182,21 @@ const AllTasks = () => {
           </thead>
           <tbody>
             {currentItems.length > 0 ? (
-              currentItems.map((task) => {
+              [...currentItems]
+              .sort((a, b) => new Date (b.created_at) - new Date (a.created_at))
+              .map((task) => {
                 const { date, time } = formatDateTime(task.created_at);
+
+                // Convert 24-hour time to AM/PM format
+                const formatTimeToAMPM = (timeStr) => {
+                  const [hours, minutes] = timeStr.split(':');
+                  const hour = parseInt(hours, 10);
+                  const suffix = hour >= 12 ? 'PM' : 'AM';
+                  const hour12 = hour % 12 || 12; // Convert 0 to 12formatTimeToAMPM 
+                  const formattedHour = hour12.toString().padStart(2, 0) // Add leading zero for single-digit hours
+                  return `${formattedHour}:${minutes} ${suffix}`;
+                };
+
                 return (
                   <tr
                     key={task.UniqueId}
@@ -195,7 +208,7 @@ const AllTasks = () => {
                     <td className="px-4 py-2 border-b">{task.provider_account_number}</td>
                     <td className="px-4 py-2 border-b">₦{task.approval_amount?.toLocaleString()}</td>
                     <td className="px-4 py-2 border-b">{date}</td>
-                    <td className="px-4 py-2 border-b">{time}</td>
+                    <td className="px-4 py-2 border-b">{formatTimeToAMPM(time)}</td>
                     {isAdmin() && <td className="px-4 py-2 border-b">{task.unit}</td>}
                     <td className={getStatusStyle(task.status)}>{task.status}</td>
                   </tr>
